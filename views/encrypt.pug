@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  div(class="container" style="text-align:center;")
+    form(method="post" action="/encrypt" enctype="multipart/form-data" id="fileEncryptForm")
+      br
+      h2 Upload a file to encrypt!
+      br
+      div(class="form-group mb-3")
+        div(class="custom-file")
+          input(type="file" class="custom-file-input form-control" id="fileInput" name="toEncrypt")
+          label(class="custom-file-label" for="fileInput") Choose file
+      br
+      h3 Encryption key:
+      h7 Please do not forget to note it! Without it you will not be able to decrypt your file!
+      input(type="password" class="form-control" id="keyInput" placeholder="Encryption key" name="key")
+      br
+      h3 Encryption type:
+      div(class="form-check form-check-inline")
+        input(class="form-check-input" type="radio" name="encryptionType" id="aes256radio" value="AES256" checked)
+        label(class="form-check-label" for="aes256radio") AES-256
+      div(class="form-check form-check-inline")
+        input(class="form-check-input" type="radio" name="encryptionType" id="aes192radio" value="AES192")
+        label(class="form-check-label" for="aes192radio") AES-192
+      div(class="form-check form-check-inline")
+        input(class="form-check-input" type="radio" name="encryptionType" id="aes128radio" value="AES128")
+        label(class="form-check-label" for="aes128radio") AES-128
+      div(class="form-check form-check-inline")
+        input(class="form-check-input" type="radio" name="encryptionType" id="des3radio" value="DES3")
+        label(class="form-check-label" for="des3radio") DES3
+      div(class="form-check form-check-inline")
+        input(class="form-check-input" type="radio" name="encryptionType" id="desradio" value="DES")
+        label(class="form-check-label" for="desradio") DES
+      div(class="form-check form-check-inline")
+        input(class="form-check-input" type="radio" name="encryptionType" id="bfradio" value="BF")
+        label(class="form-check-label" for="bfradio") BF
+      br
+      br
+      button(class="btn btn-primary" type="submit" id="uploadBtn" disabled) Encrypt!
+  script(type="text/javascript" src="javascripts/clientEncrypt.js")
