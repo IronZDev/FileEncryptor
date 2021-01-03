@@ -51,10 +51,18 @@ router.post('/decrypt', upload.single("toDecrypt" /* name attribute of <file> el
                             message: err.message
                         });
                     }
-                    fs.unlinkSync(decryptedPath);
+                    try {
+                        fs.unlinkSync(decryptedPath);
+                    } catch (e) {
+                        console.log(e.message);
+                    }
                 });
                 console.log("Decrypted");
-                fs.unlinkSync(tempPath);
+                try {
+                    fs.unlinkSync(tempPath);
+                } catch (e) {
+                    console.log(e.message);
+                }
             });
         } catch (e) {
             console.log(e.message);
